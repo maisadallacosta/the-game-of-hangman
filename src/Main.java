@@ -9,10 +9,10 @@ public class Main {
         System.out.println("Welcome to the game of hangman!");
 
         String chosenWord = word(); // attributes the random word to a variable
-        StringBuilder display = frame(chosenWord);
+        StringBuilder display = frame(chosenWord); // attrbiutes the function's return to a variable
 
         while (true) { // while the game is still up to play: 
-            System.out.println(display.toString());
+            System.out.println(display.toString()); // print the array in String way
 
             System.out.print("Enter a character: ");
             char guessedLetter = scan.next().charAt(0); // will read the user's input as a String and then use the char at index: 0 (supossed to be the only input)
@@ -27,10 +27,16 @@ public class Main {
             } else {
                 if (error > chosenWord.length()){ // checks if the number of user errors is not already overflowing
                     System.out.println("You have lost all your attempts!");
+                    break; // breaks the loop while when the player losts
                 } else {
                     System.out.println("Wrong guess! Try again.");
                     error++; // adds to the variable so as to have a control
                 }
+            }
+
+            if (display.indexOf("_ ") == -1){ // if the method does not find any underscore, it will return -1 (== none were found)
+                System.out.println("You won! The guessed word was: " + chosenWord);
+                break; // breaks the loop while when the player wons
             }
         }
     }
