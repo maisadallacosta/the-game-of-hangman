@@ -1,3 +1,5 @@
+import utils.*;
+
 public class Game {
     private int error = 0; // variable that tracks the number of incorrect guesses made by the user
     private int body = 6; // will control the maximum number of allowed errors
