@@ -24,7 +24,7 @@ public class SecretWord {
     private String chooseSecretWord() {
         Random ran = new Random(); // object that will be responsable for randomly choose a word from the vector secretWordsList
         
-        int ranIndex = ran.nextInt(secretWordsList.length); // variable that will use the ran object to choose a index from the vector secretWordsList
+        int ranIndex = ran.nextInt(secretWordsList.length); // variable that will use the ran object to choose an index from the vector secretWordsList
 
         return secretWordsList[ranIndex]; // will return a random index of the vector (consequently a random word) each play
     } 

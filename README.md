@@ -1,38 +1,46 @@
-## The game of hangman
+# The Game of Hangman 🧠🚀
+A simple Hangman game developed in Java, focused on practicing Object-Oriented Programming (OOP) and Graphical Interfaces.
 
-#### Organization
-The algorithm is organized in a modular way, where each procedure/function is responsible for carrying out a specific task in the program.
+## 🗃️ | Organization 
+This project is organized in a modular and object-oriented way. Each class has a single responsibility, improving code readability, maintenance, and reusability. 
 
-##### The man
-As each part of the man appears after the user's error, an ```error``` variable is used to count the number of incorrect attempts and to control which part of the body should be added to the drawing until the word is guessed or the game ends. For example:
-```java
-if (correctLetter == false){
-    if (error == 1){
-        System.out.println("(will draw the head)");
-    } else if (error == 2){
-        System.out.println("(will draw the torso)");
-    } (...)
-}
-```
+## 🕹️ | Classes and their functions
+| Class | Responsability |
+| ----- | -------------- |
+| `Main` | Instantiates the game (entry point). |
+| `SecretWord` | Randomly selects a word from the  ```secretWordsList```. |
+| `Display` | Creates the underscore display for the secret word.|
+| `InputValidation` | Validates user input to ensure it's a single character. | 
+| `WordVerification` | Checks if the ```guessedLetter``` (user's input) exists in the word. |
+| `Game` | Controls game flow and handles main loop. |
 
-#### Attributes
-Essential basic variables used in the program:
+## ✒️ | Attributes
+### SecretWord 
+- ```String[] secretWordsList``` : vector that will store the possible words to be randomly chosen in ```chooseSecretWord()```.
+- ```String chosenWord``` : will store the randomly chosen secret word to be guessed.
+- ```Random ran``` : Random's class object used to select a random word.
+- ```int ranIndex``` : will use the ran object (from `Random`) to choose and return an index from the vector ```secretWordsList```.
 
-| Variable's name | Type | Description |
-|------------------|------|-----------|
-| ```error``` | int | Variable responsible for counting the user's failed attempts. |
-| ```ranIndex``` | int | Variable that will contain the index of the array ```secretWord``` chose randomly. |
-| ```guessedtLetter``` | char | The user's letter input. |
-| ```correctLetter``` | char | Will analyze and store the letters that the user has already discovered correctly. |
-| ```word```          | String | Randomly chosen word that the user has to guess. |
-| ```chosenWord``` | String | Will attribute the random word (return of the function ```String word```). |
-| ```secretWord``` | String[] | Array that conatins all the possible words. |
-| ```line``` | StringBuilder | Will attribute the transformation of the word to char to underscores and return a value. |
-| ```display``` | StringBuilder | Will atribute the return of the function ```frame``` (where ```line``` is located). |
-| ```scan```| Scanner | Used to read user input. |
-| ```ran```| Random | Used to select a random word. |
+### Display
+- ```StringBuilder line``` : will attribute the transformation of the ```chosenWord``` to chars to underscores and return.
 
-#### Methods
+### InputValidation 
+- ```Scanner scan``` : Scanner's class object used to read user input.
+- ```String guessedInput``` : The user's input that needs verification (must be only one character).
+
+### WordVerification 
+- ```String wordToVerify``` : will store the ```chosenWord``` that needs to be checked
+
+### Game
+- ```int error``` : tracks the number of incorrect guesses made by the user.
+- ```int body``` : stores the maximum number of allowed errors and control the printing of body parts.
+- ```String secretChosenWord``` : stores the secret word of each time that need to be guessed defined by the getter from ```SecretWord```.
+- ```StringBuilder underscores``` : will store the needed unerscores for each secret word using the getter from ```Display```.
+- ```WordVerification verifier``` : will store the object of the class ```WordVerification```.
+- ```char guessedLetter``` : will store the ```guessedInput``` if the verification == true, and will be used in ```WordVerifycation```.
+- ```boolean correctGuess``` : will use the ```verifier``` object to attribute value (if the guessed letter exists in the secret word).
+
+## 📂 | Methods
 The following methods are used in the project:
 1. ```main``` Controls the game's flow, from start to end.
     - return ```void```
@@ -54,3 +62,15 @@ The following methods are used in the project:
         - ```guessedLetter```: the letter entered by the user
         - ```error```: number of incorrect attempts
     - will probably return a graphic instruction
+
+##### The man
+As each part of the man appears after the user's error, an ```error``` variable is used to count the number of incorrect attempts and to control which part of the body should be added to the drawing until the word is guessed or the game ends. For example:
+```java
+if (correctLetter == false){
+    if (error == 1){
+        System.out.println("(will draw the head)");
+    } else if (error == 2){
+        System.out.println("(will draw the torso)");
+    } (...)
+}
+```
